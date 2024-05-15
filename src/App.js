@@ -34,12 +34,10 @@ class App extends Component {
   onSearchChange = (event) => {
     //console.log(event.target.value); // logs the string currently in the search box
     const searchField = event.target.value.toLocaleLowerCase(); // toLocaleLowerCase forces lowercase, use this for case-insensitivity
-    
     // update the state of monsters
     this.setState( () => {
       return { searchField } // update the search field member with the current search bar text
     })
-
   }
   
   render() {
@@ -48,7 +46,7 @@ class App extends Component {
     const { monsters, searchField } = this.state; // allows for shorthanding so we dont have to type "this." everywhere
     const { onSearchChange } = this; // make sure to scope properly 
     
-    // create a filtered array based on monster names that match the searchField
+    // create a filtered array based on monster names that match the searchField, (notice this will occur every render).
     const filteredMonsters = monsters.filter( (monster) => {
       return monster.name.toLocaleLowerCase().includes(searchField); // check if monster name includes the current string in search box. store matches in filtered monsters
     });
