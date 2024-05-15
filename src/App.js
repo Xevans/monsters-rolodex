@@ -1,11 +1,32 @@
 /* eslint-disable no-useless-constructor */
-import { Component } from 'react';
+import { useState } from 'react'
 
 import CardList from './components/card-list/card-list.component';
 import './App.css';
 import SearchBox from './components/search-box/search-box.component';
 
-class App extends Component {
+
+const App = () => {
+  console.log('render ')
+  const [searchField, setSearchField] = useState(''); // [value, setValue] // useState(defaultState)
+  console.log(searchField)
+
+  const onSearchChange = (event) => {
+    //console.log(event.target.value); // logs the string currently in the search box
+    const searchFieldString = event.target.value.toLocaleLowerCase(); // toLocaleLowerCase forces lowercase, use this for case-insensitivity
+    // update the state of monsters
+    setSearchField(searchFieldString)
+  }
+
+  return(
+    <div className='App'>
+      <h1 className='app-title'>Monsters Rolodex</h1>
+      <SearchBox onChangeHandler={onSearchChange} placeholderSearchText={"Search Monster..."} className={'monsters-search-box'} />
+    </div>
+  );
+}
+
+/*class App extends Component {
   constructor() {
     //console.log("constructor");
     super();
@@ -60,6 +81,6 @@ class App extends Component {
       </div>
     );
   }
-}
+}*/
 
 export default App;
