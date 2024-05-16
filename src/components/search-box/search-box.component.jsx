@@ -1,8 +1,19 @@
-import { Component } from 'react';
+
 import './search-box.styles.css'
 
 // handle Search Box
-class SearchBox extends Component {
+
+const SearchBox = (props) => {
+    return(
+        <input 
+            className={`search-box ${props.className}`} // this prop has two class names using the JS string literal (dollar sign): the hard coded, and the one passed by props. Do this so that you can apply global styling + styling for this search box instance
+            type='search' 
+            placeholder={props.placeholderSearchText} 
+            onChange={props.onChangeHandler}/>
+    );
+}
+
+/*class SearchBox extends Component {
     
     render() {
         return(
@@ -13,6 +24,6 @@ class SearchBox extends Component {
                 onChange={this.props.onChangeHandler}/>
         )
     }
-}
+}*/
 
 export default SearchBox;
